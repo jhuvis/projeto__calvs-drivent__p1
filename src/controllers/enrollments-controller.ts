@@ -22,6 +22,8 @@ export async function postCreateOrUpdateEnrollment(req: AuthenticatedRequest, re
       userId: req.userId,
     });
 
+    await enrollmentsService.getAddressFromCEP(req.body.address.cep);
+
     return res.sendStatus(httpStatus.OK);
   } catch (error) {
     return res.sendStatus(httpStatus.BAD_REQUEST);
@@ -32,7 +34,7 @@ export async function getAddressFromCEP(req: AuthenticatedRequest, res: Response
   const { cep } = req.query as Record<string, string>;
 
   try {
-    const address = await enrollmentsService.getAddressFromCEP();
+    const address = await enrollmentsService.getAddressFromCEP(cep);
     res.status(httpStatus.OK).send(address); 
   } catch (error) {
     if (error.name === "NotFoundError") {

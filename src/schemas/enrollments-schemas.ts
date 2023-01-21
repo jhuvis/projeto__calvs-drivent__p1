@@ -39,6 +39,7 @@ function joiCpfValidation(value: string, helpers: Joi.CustomHelpers<string>) {
 
 function JoiCepValidation(value: string, helpers: Joi.CustomHelpers<string>) {
   if (!value) return value;
+  
 
   if (!isValidCEP(value)) {
     return helpers.error("any.invalid");

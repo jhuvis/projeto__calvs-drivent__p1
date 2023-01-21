@@ -16,12 +16,12 @@ function validate(schema: ObjectSchema, type: "body" | "params") {
     const { error } = schema.validate(req[type], {
       abortEarly: false,
     });
-
-    if (!error) {
-      next();
-    } else {
-      res.status(httpStatus.BAD_REQUEST).send(invalidDataError(error.details.map((d) => d.message)));
+    
+    if(error) 
+    {
+      return res.status(httpStatus.BAD_REQUEST).send(invalidDataError(error.details.map((d) => d.message)));   
     }
+    next();
   };
 }
 
