@@ -38,4 +38,5 @@ export type AuthenticatedRequest = Request & JWTPayload;
 
 type JWTPayload = {
   userId: number;
+  
 };

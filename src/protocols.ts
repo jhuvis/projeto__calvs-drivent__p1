@@ -11,6 +11,15 @@ export type ViaCEPAddress = {
   uf: string,
 };
 
+export type AddressEnrollment = {
+  logradouro: string,
+  complemento: string,
+  bairro: string,
+  cidade: string,
+  uf: string,
+  error?: string
+}
+
 export type RequestError = {
   status: number,
   data: object | null,
@@ -18,3 +27,14 @@ export type RequestError = {
   name: string,
   message: string,
 };
+
+export type Payments = {
+	ticketId: number,
+	cardData: {
+		issuer: string,
+    number: number,
+    name: string,
+    expirationDate: Date,
+    cvv: number
+	}
+}
