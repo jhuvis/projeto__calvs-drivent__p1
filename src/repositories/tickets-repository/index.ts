@@ -1,5 +1,5 @@
 import { prisma } from "../../config";
-import { TicketStatus, TicketType } from "@prisma/client";
+import { TicketStatus } from "@prisma/client";
 
 async function getTicketsTypes() 
 {
@@ -47,7 +47,7 @@ async function postTickets(enrollmentId: number, ticketTypeId: number)
     ticketTypeId,
     enrollmentId };
   return prisma.ticket.create({
-      data
+    data
   });
 }
 
@@ -64,14 +64,13 @@ async function updateTicket(id: number)
   });
 }
 
-
 const ticketsRepository = {
-    getTicketsTypes,
-    getTickets,
-    getTicketType,
-    postTickets,
-    getTicket,
-    updateTicket
+  getTicketsTypes,
+  getTickets,
+  getTicketType,
+  postTickets,
+  getTicket,
+  updateTicket
 };
 
 export default ticketsRepository;
