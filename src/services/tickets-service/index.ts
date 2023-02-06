@@ -3,13 +3,11 @@ import { requestError } from "../../errors";
 import ticketsRepository from "../../repositories/tickets-repository";
 import enrollmentRepository from "../../repositories/enrollment-repository";
 
-
 async function getTicketsTypes()
 {
   const ticketsTypes = await ticketsRepository.getTicketsTypes();
 
-  return ticketsTypes
-
+  return ticketsTypes;
 }
 
 async function getTickets(userId: number)
@@ -19,7 +17,7 @@ async function getTickets(userId: number)
   {
     throw requestError(404, "not found");
   }    
-  return tickets[0]
+  return tickets[0];
 }
 
 async function postTickets(userId: number,  ticketTypeId: number)
@@ -41,15 +39,13 @@ async function postTickets(userId: number,  ticketTypeId: number)
   
   const ticket = await ticketsRepository.postTickets(enrollment.id, ticketTypeId);
     
-  return ticket
+  return ticket;
 }
 
-
-
 const ticketsService = {
-    getTicketsTypes,
-    getTickets,
-    postTickets
+  getTicketsTypes,
+  getTickets,
+  postTickets
 };
 
 export default ticketsService;

@@ -4,7 +4,6 @@ import { Response } from "express";
 import httpStatus from "http-status";
 
 export async function getTicketsTypes(req: AuthenticatedRequest, res: Response) {
-  
   try {
     const ticketsTypes = await ticketsService.getTicketsTypes();
 
@@ -30,7 +29,6 @@ export async function postTickets(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
   const { ticketTypeId } = req.body;
   try {
-
     await ticketsService.postTickets(userId, ticketTypeId);
     const tickets = await ticketsService.getTickets(userId);
     
@@ -39,7 +37,4 @@ export async function postTickets(req: AuthenticatedRequest, res: Response) {
     return res.status(error.status).send(error.message);
   }
 }
-
-
-
 
