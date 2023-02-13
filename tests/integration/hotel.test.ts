@@ -4,7 +4,7 @@ import { prisma } from "@/config";
 import faker from "@faker-js/faker";
 import httpStatus from "http-status";
 import { createUser, createTicketType, createEnrollmentWithAddress, createTicket, createPayment, generateCreditCardData } from "../factories";
-import { generateValidToken } from "../helpers";
+import { generateValidToken, cleanDb } from "../helpers";
 import * as jwt from "jsonwebtoken";
 import { TicketStatus } from "@prisma/client";
 
@@ -13,16 +13,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await prisma.room.deleteMany({});
-  await prisma.hotel.deleteMany({});
-  await prisma.address.deleteMany({});
-  await prisma.payment.deleteMany({});
-  await prisma.ticket.deleteMany({});
-  await prisma.enrollment.deleteMany({});
-  await prisma.event.deleteMany({});
-  await prisma.session.deleteMany({});
-  await prisma.user.deleteMany({});
-  await prisma.ticketType.deleteMany({});
+  await cleanDb();
 });
 
 const server = supertest(app);
